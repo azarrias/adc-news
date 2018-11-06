@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import es.pue.android.news.model.News;
@@ -34,8 +36,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, int i) {
         News n = news.get(i);
+        Glide.with(newsViewHolder.image.getContext())
+                .load(n.getImageUrl())
+                .into(newsViewHolder.image);
+
         newsViewHolder.title.setText(n.getTitle());
         newsViewHolder.body.setText(n.getBody());
+
         newsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,8 +15,9 @@
 
         <ImageView
             android:id="@+id/imgNews"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             />
@@ -25,6 +26,9 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:maxLines="1"
             android:text="News title"
@@ -34,6 +38,9 @@
             android:id="@+id/tvBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:maxLines="4"
             android:text="News description"
