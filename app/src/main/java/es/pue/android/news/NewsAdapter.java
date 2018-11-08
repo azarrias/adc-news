@@ -1,5 +1,7 @@
 package es.pue.android.news;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,10 +18,14 @@ import es.pue.android.news.model.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
-    List<News> news;
+    static final String URL_KEY = "article_url";
 
-    public NewsAdapter(List<News> news) {
+    private List<News> news;
+    private final Context context;
+
+    public NewsAdapter(List<News> news, Context context) {
         this.news = news;
+        this.context = context;
     }
 
     @NonNull
@@ -35,7 +41,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder newsViewHolder, int i) {
-        News n = news.get(i);
+        final News n = news.get(i);
         Glide.with(newsViewHolder.image.getContext())
                 .load(n.getImageUrl())
                 .into(newsViewHolder.image);
@@ -47,6 +53,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             @Override
             public void onClick(View v) {
                 // TODO: load article
+                // Explicit intent
+                Intent i = new Intent(context, ArticleActivity.class);
+                i.putExtra(URL_KEY, n.getUrlToArticle());
+                context.startActivity(i);
             }
         });
     }
